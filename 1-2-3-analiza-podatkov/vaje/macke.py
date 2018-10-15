@@ -22,11 +22,12 @@ def download_url_to_string(url):
     using requests. Upon success, it returns the page contents as string.'''
     try:
         # del kode, ki morda sproži napako
-        r = requests.get(url)      
+        r = requests.get(url)     
     except requests.exceptions.ConnectionError:
         # koda, ki se izvede pri napaki
         # dovolj je če izpišemo opozorilo in prekinemo izvajanje funkcije
         print('stran ne obstaja')
+        return None
     # nadaljujemo s kodo če ni prišlo do napake
     else:
         return r.text
@@ -45,10 +46,11 @@ def save_string_to_file(text, directory, filename):
 # Definirajte funkcijo, ki prenese glavno stran in jo shrani v datoteko.
 
 
-def save_frontpage(TODO):
+def save_frontpage(url):
     '''Save "cats_frontpage_url" to the file
     "cat_directory"/"frontpage_filename"'''
-    return TODO
+    text = download_url_to string(cats_frontpage_url)
+    return save_string_to_file(text, cat_directory, frontpage_filename)
 
 ###############################################################################
 # Po pridobitvi podatkov jih želimo obdelati.
@@ -57,7 +59,8 @@ def save_frontpage(TODO):
 
 def read_file_to_string(directory, filename):
     '''Return the contents of the file "directory"/"filename" as a string.'''
-    return TODO
+    with open(filename) as file:
+        return file.read()
 
 # Definirajte funkcijo, ki sprejme niz, ki predstavlja vsebino spletne strani,
 # in ga razdeli na dele, kjer vsak del predstavlja en oglas. To storite s
