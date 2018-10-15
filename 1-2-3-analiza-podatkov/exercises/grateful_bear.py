@@ -14,7 +14,7 @@ godrnja. Zato se žena ojunači in mu izdere trn iz tace. Mrcina kosmata pa zvrn
 zibel, jo pobaše in oddide. Čez nekaj časa pa ji zopet prinese zibel, a zvhano
 napolnjeno s sladkimi hruškami . Postavil jo je na tla pred začudeno mater in
 odracal nazaj v goščavo. "Poglej no", se je razveselila mati, "kakšen hvaležen
-medved. Zvrhano zibelko sladkih hrušk mi je prinesel za en sam izdrt trn"."""
+medved. Zvrhano zibelko sladkih hrušk mi je prinesel za en sam izdrt trn"..."""
 
 ###############################################################################
 # 1) Write a function [find_words] that returns a set of all the  words in a
