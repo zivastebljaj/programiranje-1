@@ -82,7 +82,7 @@ let rec divide k xs =
 let rec delete k xs =
   match xs with
   |[] -> failwith "prekratek seznam"
-  |
+  |x :: xs -> if k = 0 then xs else delete (k - 1) (x :: xs) 
 
 (*----------------------------------------------------------------------------*]
  Funkcija [slice i k list] sestavi nov seznam, ki vsebuje elemente seznama
@@ -115,10 +115,10 @@ let rec insert = ()
  - : int list = [3; 4; 5; 1; 2]
 [*----------------------------------------------------------------------------*)
 
-let rec rotate xs =
-  match xs with:
-  |[ ] -> []
-  |x : xs ->
+let rec rotate k xs =
+  match xs with
+  |[] -> []
+  |x :: xs -> if k <= 0 then x :: xs else rotate (k - 1) (xs @ [x]) 
   
 
 (*----------------------------------------------------------------------------*]
