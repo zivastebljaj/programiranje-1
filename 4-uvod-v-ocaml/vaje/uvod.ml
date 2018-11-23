@@ -82,7 +82,7 @@ let rec divide k xs =
 let rec delete k xs =
   match xs with
   |[] -> failwith "prekratek seznam"
-  |x :: xs -> if k = 0 then xs else delete (k - 1) (x :: xs) 
+  |x :: xs -> if k = 0 then xs else x :: delete (k - 1) xs
 
 (*----------------------------------------------------------------------------*]
  Funkcija [slice i k list] sestavi nov seznam, ki vsebuje elemente seznama
@@ -105,7 +105,10 @@ let rec slice = ()
  - : int list = [1; 0; 0; 0; 0; 0]
 [*----------------------------------------------------------------------------*)
 
-let rec insert = ()
+let rec insert a k xs =
+  match xs with
+  |[] -> [a]
+  | x :: xs -> if k <= 0 then a :: x :: xs else x :: insert a (k - 1) xs
 
 (*----------------------------------------------------------------------------*]
  Funkcija [rotate n list] seznam zavrti za [n] mest v levo. Predpostavimo, da
@@ -128,7 +131,10 @@ let rec rotate k xs =
  - : int list = [2; 3; 2; 3]
 [*----------------------------------------------------------------------------*)
 
-let rec remove = ()
+let rec remove a xs = 
+  match xs with
+  |[] ->[]
+  | x :: xs -> if x = a then remove a xs else x :: remove a xs
 
 (*----------------------------------------------------------------------------*]
  Funkcija [is_palindrome] za dani seznam ugotovi ali predstavlja palindrom.
