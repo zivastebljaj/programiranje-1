@@ -93,7 +93,16 @@ let rec delete k xs =
  - : int list = [1; 2; 3]
 [*----------------------------------------------------------------------------*)
 
-let rec slice = ()
+let rec slice i k list = 
+  match list with
+  |[] -> []
+  |x :: xs -> 
+    if i = 0 then
+      if k = 0 then
+        [] 
+      else x :: slice i (k - 1) xs
+    else
+      slice (i - 1) (k - 1) xs
 
 (*----------------------------------------------------------------------------*]
  Funkcija [insert x k list] na [k]-to mesto seznama [list] vrine element [x].
@@ -146,7 +155,12 @@ let rec remove a xs =
  - : bool = false
 [*----------------------------------------------------------------------------*)
 
-let rec is_palindrome = ()
+let rec reverse = function
+| [] -> []
+| x :: xs -> (reverse xs) @ [x]
+
+let rec is_palindrome list =
+  let obrnjen = reverse list in obrnjen = list
 
 (*----------------------------------------------------------------------------*]
  Funkcija [max_on_components] sprejme dva seznama in vrne nov seznam, katerega
@@ -157,7 +171,15 @@ let rec is_palindrome = ()
  - : int list = [5; 4; 3; 3; 4]
 [*----------------------------------------------------------------------------*)
 
-let rec max_on_components = ()
+let rec max_on_components list1 list2 = 
+  match list1, list2 with
+  | [], _ -> []
+  | _, [] -> []
+  | x :: xs, y :: ys -> 
+    if x <= y 
+      then y :: max_on_components xs ys 
+    else x :: max_on_components xs ys
+
 
 (*----------------------------------------------------------------------------*]
  Funkcija [second_largest] vrne drugo največjo vrednost v seznamu. Pri tem se
@@ -169,4 +191,12 @@ let rec max_on_components = ()
  - : int = 10
 [*----------------------------------------------------------------------------*)
 
-let rec second_largest = ()
+let rec largest = function
+| [] -> failwith "prekratek seznam"
+| [x] -> x
+| x :: y :: xs -> if x < y then largest (y :: xs) else largest (x :: xs)
+
+let second_largest list = 
+  let new_list = remove (largest list) list
+  in
+  largest new_list
